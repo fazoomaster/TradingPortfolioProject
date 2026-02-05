@@ -204,67 +204,85 @@ will likely refine your design to make your implementation easier to use.
   - **Description**:
     - The purpose of this component is to model a structured trading journal.
     - The journal stores individual trade records in a time-ordered manner and allows clients to record and review past trades.
-    - The design intentionally keeps the kernel minimal for managing entries, while layering more complex inspection and querying operations in the secondary interface.
   - **Kernel Methods**:
     - addEntry(TradeEntry e)
     - removeLast()
   - **Secondary Methods**:
-    - <!-- TODO: list secondary methods then delete this comment -->
+    - TradEntry latestEntry()
+    - Sequence<TradeEntry> entriesBySession(Session s)
+    - Sequence<TradeEntry> entriesByOutcome(Outcome o)
   - **Additional Considerations** (*note*: "I don't know" is an acceptable
-    answer for each of the following questions):
+    answeso wr for each of the following questions):
     - Would this component be mutable? Answer and explain:
-      - <!-- TODO: provide an argument then delete this comment -->
+      - Yes. This component would be mutable because it inherits from Standard, and operations such as adding or removing entries modify the state of th journal.
     - Would this component rely on any internal classes (e.g., `Map.Pair`)?
       Answer and explain:
-      - <!-- TODO: provide an argument then delete this comment -->
+      - Yes. This component would rely on an internal TradeEntry class to get information about a single trade, such as time, session, and outcome.
     - Would this component need any enums or constants (e.g.,
-      `Program.Instruction`)? Answer and explain:
-      - <!-- TODO: provide an argument then delete this comment -->
+      `Program.Instruction`)?
+      - Answer and explain:
+      - Yes. Enums such as Session and Outcome would be useful to restrict valid values and prevent invalid states within the journal.
     - Can you implement your secondary methods using your kernel methods?
       Answer, explain, and give at least one example:
-      - <!-- TODO: provide an argument then delete this comment -->
+      - Yes. All secondary methods can be implemented using the kernel methods.
+      - For example, latestEntry can be implemented by temporarily removing the last entry using removeLast and then re-adding it.
+      - Query methods can be implemented by iterating through entries that were added via the kernel.
 
-- Component Design #2: <!-- TODO: give component a name then delete this comment -->
-  - **Description**:
-    - <!-- TODO: describe your component then delete this comment -->
-  - **Kernel Methods**:
-    - <!-- TODO: list kernel methods then delete this comment -->
-  - **Secondary Methods**:
-    - <!-- TODO: list secondary methods then delete this comment -->
-  - **Additional Considerations** (*note*: "I don't know" is an acceptable
-    answer for each of the following questions):
-    - Would this component be mutable? Answer and explain:
-      - <!-- TODO: provide an argument then delete this comment -->
-    - Would this component rely on any internal classes (e.g., `Map.Pair`)?
-      Answer and explain:
-      - <!-- TODO: provide an argument then delete this comment -->
-    - Would this component need any enums or constants (e.g.,
-      `Program.Instruction`)? Answer and explain:
-      - <!-- TODO: provide an argument then delete this comment -->
-    - Can you implement your secondary methods using your kernel methods?
-      Answer, explain, and give at least one example:
-      - <!-- TODO: provide an argument then delete this comment -->
 
-- Component Design #3: <!-- TODO: give component a name then delete this comment -->
+- Component Design #2: Sessiontracker
   - **Description**:
-    - <!-- TODO: describe your component then delete this comment -->
+    - The purpose of this component is to model a collection of trading sessions defined by time windows.
+    - The component allows clients to add, remove, and query sessions in order to determine whether a given timestamp falls within a tracked session.
   - **Kernel Methods**:
-    - <!-- TODO: list kernel methods then delete this comment -->
+    - addSession(Session s)
+    - Session removeSession()
+    - int size()
   - **Secondary Methods**:
-    - <!-- TODO: list secondary methods then delete this comment -->
+    - boolean isInSession(long timetamp)
+    - Session currentSession(long timestamp)
+    - boolean doesSessionOverlap()
   - **Additional Considerations** (*note*: "I don't know" is an acceptable
     answer for each of the following questions):
     - Would this component be mutable? Answer and explain:
-      - <!-- TODO: provide an argument then delete this comment -->
+      - Yes. The component would be mutable because sessions can be added, removed, or cleared, and the component inherits from Standard.
     - Would this component rely on any internal classes (e.g., `Map.Pair`)?
       Answer and explain:
-      - <!-- TODO: provide an argument then delete this comment -->
+      - I dont know
     - Would this component need any enums or constants (e.g.,
       `Program.Instruction`)? Answer and explain:
-      - <!-- TODO: provide an argument then delete this comment -->
+      - I dont think so but I am not sure.
     - Can you implement your secondary methods using your kernel methods?
       Answer, explain, and give at least one example:
-      - <!-- TODO: provide an argument then delete this comment -->
+      - Yes. All secondary methods can be implemented using the kernel methods by iterating through sessions added via the kernel.
+      - isInSession can be implemented by checking each stored session for containment of the given timestamp.
+
+
+- Component Design #3: TradeOutcomeStats
+  - **Description**:
+    - The purpose of this component is to model aggregated statistics about trade outcomes.
+    - The component tracks summary information such as the number of winning, losing, and breakeven trades.
+  - **Kernel Methods**:
+    - int totalTrades();
+    - recordOutcome(Outcome o)
+  - **Secondary Methods**:
+    - int wins()
+    - int losses()
+    - int breakeven()
+    - double winRate()
+  - **Additional Considerations** (*note*: "I don't know" is an acceptable
+    answer for each of the following questions):
+    - Would this component be mutable? Answer and explain:
+      -I dont Know
+    - Would this component rely on any internal classes (e.g., `Map.Pair`)?
+      Answer and explain:
+      - I dont know
+    - Would this component need any enums or constants (e.g.,
+      `Program.Instruction`)? Answer and explain:
+      - Yes. An Outcome enum would be used to represent valid trade outcomes such as WIN, LOSS, or BREAKEVEN.
+    - Can you implement your secondary methods using your kernel methods?
+      Answer, explain, and give at least one example:
+      - Yes. All secondary methods can be implemented using the kernel methods.
+      - winRate can be computed by dividing the number of wins by the total number of recorded trades.
 
 ## Post-Assignment
 
@@ -273,7 +291,6 @@ completed the assignment.
 
 ### Changelog
 
-<!-- TODO: create CHANGELOG then delete this comment -->
 
 At the end of every assignment, you should update the
 [CHANGELOG.md](../../CHANGELOG.md) file found in the root of the project folder.
@@ -312,7 +329,7 @@ of development.
 
 ### Submission
 
-<!-- TODO: read the submission instructions then delete this comment -->
+
 
 If you have completed the assignment using this template, we recommend that
 you convert it to a PDF before submission. If you're not sure how, check out
@@ -326,7 +343,6 @@ you have to submit any PDFs.
 
 ### Peer Review
 
-<!-- TODO: review the peer review guidelines then delete this comment -->
 
 Following the completion of this assignment, you will be assigned three
 students' component brainstorming assignments for review. Your job during the
@@ -353,7 +369,6 @@ If you'd like to give feedback for this assignment (or any assignment, really),
 make use of [this survey][survey]. Your feedback helps make assignments
 better for future students.
 
-<!-- TODO: follow the link to share your feedback then delete this comment -->
 
 [example-components]: https://therenegadecoder.com/code/the-never-ending-list-of-small-programming-project-ideas/
 [markdown-to-pdf-guide]: https://therenegadecoder.com/blog/how-to-convert-markdown-to-a-pdf-3-quick-solutions/
