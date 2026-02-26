@@ -200,17 +200,35 @@ will likely refine your design to make your implementation easier to use.
 
 > Please use this section to share your designs.
 
+### Definitions
+
+- **Session**: A defined time period when a financial market is open.
+
+- **Trade**: The buying or selling of a financial asset.
+
+- **Trade Entry**: A recorded record containing information about a completed trade.
+
+- **Outcome**: The result of a trade: win, loss, or breakeven.
+
+- **Profit/Loss**: The amount of money gained or lost from a trade.
+
+- **Timestamp**: A numeric value representing a specific moment in time.
+
+
 - Component Design #1: Trading Journal
   - **Description**:
     - The purpose of this component is to model a structured trading journal.
     - The journal stores individual trade records in a time-ordered manner and allows clients to record and review past trades.
   - **Kernel Methods**:
-    - addEntry(TradeEntry e)
-    - removeLast()
+    - `void addEntry(TradeEntry e)`: adds `e` to `this`
+    - `TradeEntry removeLast()`: removes and returns the most recently added trade entry
+    - `int size()`: reports the number of trade entries in `this`
   - **Secondary Methods**:
-    - TradEntry latestEntry()
-    - Sequence<TradeEntry> entriesBySession(Session s)
-    - Sequence<TradeEntry> entriesByOutcome(Outcome o)
+    - `TradeEntry latestEntry()`: reports the most recent trade entry without removing it
+    - `double totalProfitLoss()`: reports the sum of profit/loss values across all entries
+    - `Sequence<TradeEntry> entriesByOutcome(Outcome o)`: returns all trade entries whose outcome equals `o`
+
+That’s enough.
   - **Additional Considerations** (*note*: "I don't know" is an acceptable
     answeso wr for each of the following questions):
     - Would this component be mutable? Answer and explain:
@@ -234,14 +252,13 @@ will likely refine your design to make your implementation easier to use.
     - The purpose of this component is to model a collection of trading sessions defined by time windows.
     - The component allows clients to add, remove, and query sessions in order to determine whether a given timestamp falls within a tracked session.
   - **Kernel Methods**:
-    - addSession(Session s)
-    - Session removeSession()
-    - int size()
+    - `void addSession(Session s)`: adds `s` to `this`
+    - `Session removeSession()`: removes and returns a session from `this`
+    - `int size()`: reports the number of stored sessions
   - **Secondary Methods**:
-    - boolean isInSession(long timetamp)
-    - Session currentSession(long timestamp)
-    - boolean doesSessionOverlap()
-  - **Additional Considerations** (*note*: "I don't know" is an acceptable
+    - `boolean isInSession(int timestamp)`: reports whether `timestamp` is within any stored session
+    - `Session sessionContaining(int timestamp)`: reports the session containing `timestamp`
+    - `boolean hasOverlappingSessions()`: reports whether any stored sessions overlap
     answer for each of the following questions):
     - Would this component be mutable? Answer and explain:
       - Yes. The component would be mutable because sessions can be added, removed, or cleared, and the component inherits from Standard.
@@ -262,13 +279,13 @@ will likely refine your design to make your implementation easier to use.
     - The purpose of this component is to model aggregated statistics about trade outcomes.
     - The component tracks summary information such as the number of winning, losing, and breakeven trades.
   - **Kernel Methods**:
-    - int totalTrades();
-    - recordOutcome(Outcome o)
+    - `void recordOutcome(Outcome o)`: records outcome `o` in `this`
+    - `int totalTrades()`: reports the total number of recorded trades
   - **Secondary Methods**:
-    - int wins()
-    - int losses()
-    - int breakeven()
-    - double winRate()
+    - `int wins()`: reports the number of winning trades
+    - `int losses()`: reports the number of losing trades
+    - `int breakeven()`: reports the number of breakeven trades
+    - `double winRate()`: reports the percentage of winning trades
   - **Additional Considerations** (*note*: "I don't know" is an acceptable
     answer for each of the following questions):
     - Would this component be mutable? Answer and explain:
