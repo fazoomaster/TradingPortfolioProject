@@ -1,5 +1,9 @@
+import components.standard.Standard;
 
-public interface TradingJournalKernel extends  {
+/**
+ * Kernel interface for TradingJournal component.
+ */
+public interface TradingJournalKernel extends Standard<TradingJournal> {
 
     /**
      * Adds a trade to this journal.
