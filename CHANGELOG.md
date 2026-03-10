@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Calendar Versioning](https://calver.org/) of
 the following form: YYYY.0M.0D.
 
+## 2026.03.10
+
+### Added
+- Created TradingJournalKernel interface following OSU kernel discipline
+- Created TradingJournal enhanced interface layered on top of kernel
+- Added client-side method contracts with full JavaDoc and design-by-contract annotations
+
+
 ## 2026.02.25
 
 ### Added & Changed
