@@ -6,6 +6,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Calendar Versioning](https://calver.org/) of
 the following form: YYYY.0M.0D.
 
+# 2026.03.31
+
+### Added
+- Implemented TradingJournalSecondary abstract class
+- Implemented equals and toString using kernel layering
+### Updated
+- TradingJournalKernel to use Trade interface
+
+
 ## 2026.03.10
 
 ### Added

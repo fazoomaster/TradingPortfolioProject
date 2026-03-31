@@ -6,34 +6,47 @@ import components.standard.Standard;
 public interface TradingJournalKernel extends Standard<TradingJournal> {
 
     /**
+     * Represents a single trade entry.
+     */
+    public interface Trade {
+
+        /**
+         * @return the trading symbol
+         */
+        String symbol();
+
+        /**
+         * @return the profit or loss value
+         */
+        double profitLoss();
+    }
+
+    /**
      * Adds a trade to this journal.
      *
-     * @param symbol
-     *            the trading instrument symbol (e.g., "NQ", "ES")
-     * @param profitLoss
-     *            the profit or loss value of the trade
+     * @param trade
+     *            the trade to add
      * @updates this
-     * @requires symbol is not null
+     * @requires trade is not null
      * @ensures size() = #size() + 1
      */
-    void addTrade(String symbol, double profitLoss);
+    void addTrade(Trade trade);
 
     /**
      * Removes and returns the most recently added trade.
      *
-     * @return the profit/loss of the removed trade
+     * @return the removed trade
      * @updates this
      * @requires size() > 0
      * @ensures size() = #size() - 1
      */
-    double removeLastTrade();
+    Trade removeLastTrade();
 
     /**
      * Reports the number of trades in this journal.
      *
      * @return the number of recorded trades
-     * @ensures size = |this|
+     * @ensures size() = the number of trades currently stored in this
      */
     int size();
-
 }
