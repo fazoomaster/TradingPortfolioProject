@@ -16,11 +16,18 @@ the following form: YYYY.0M.0D.
 
 ## 2026.02.25
 
-### Added & Changed
+### Added
 
-- Designed a TradingJournal component
-- Designed a SessionTracker component
-- Designed a TradeOutcomeStats component
+- Designed and implemented a proof-of-concept for the TradingJournal component
+- Added TradingJournalMVP.java demonstrating representation, multiple methods, and main method usage
+
+### Updated
+
+- Completed Part 2 documentation and justification for selected design
+
+## 2026.02.25
+
+## Updated
 - Definitions of trading terms
 - Described each kernal and secondary method for all 3 designs
 
