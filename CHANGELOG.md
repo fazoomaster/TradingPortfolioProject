@@ -6,6 +6,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Calendar Versioning](https://calver.org/) of
 the following form: YYYY.0M.0D.
 
+## 2026.04.15
+
+### Added
+- Implemented `TradingJournal1` concrete kernel class
+- Selected `Sequence<Trade>` as internal representation
+- Defined representation invariant and correspondence
+- Implemented kernel methods:
+  - `addTrade`
+  - `removeLastTrade`
+  - `size`
+- Implemented `Standard` methods:
+  - `newInstance`
+  - `clear`
+  - `transferFrom`
+
 ## 2026.02.26
 
 ### Added
