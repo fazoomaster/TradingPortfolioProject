@@ -21,6 +21,15 @@ the following form: YYYY.0M.0D.
   - `clear`
   - `transferFrom`
 
+# 2026.03.31
+
+### Added
+- Implemented TradingJournalSecondary abstract class
+- Implemented equals and toString using kernel layering
+### Updated
+- TradingJournalKernel to use Trade interface
+
+
 ## 2026.03.10
 
 ### Added
