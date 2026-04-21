@@ -1,9 +1,29 @@
 public class TradingJournal1Test {
 
+    private static final double DELTA = 0.001;
+
+    private static final double POSITIVE_500 = 500.0;
+    private static final double POSITIVE_300 = 300.0;
+    private static final double NEGATIVE_200 = -200.0;
+
+    /**
+     * Creates a new journal instance.
+     *
+     * @return new TradingJournal
+     */
     private TradingJournal createJournal() {
         return new TradingJournal1();
     }
 
+    /**
+     * Creates a trade record.
+     *
+     * @param symbol
+     *            trade symbol
+     * @param pnl
+     *            profit or loss
+     * @return trade instance
+     */
     private TradingJournalKernel.Trade trade(String symbol, double pnl) {
         return new TradingJournal1.Trade1(symbol, pnl);
     }
@@ -17,14 +37,14 @@ public class TradingJournal1Test {
     @Test
     public void testAddTradeIncreasesSize() {
         TradingJournal j = createJournal();
-        j.addTrade(trade("NQ", 500));
+        j.addTrade(trade("NQ", POSITIVE_500));
         assertEquals(1, j.size());
     }
 
     @Test
     public void testRemoveLastTradeDecreasesSize() {
         TradingJournal j = createJournal();
-        j.addTrade(trade("NQ", 500));
+        j.addTrade(trade("NQ", POSITIVE_500));
         j.removeLastTrade();
         assertEquals(0, j.size());
     }
@@ -32,16 +52,18 @@ public class TradingJournal1Test {
     @Test
     public void testRemoveLastTradeReturnsCorrectTrade() {
         TradingJournal j = createJournal();
-        j.addTrade(trade("NQ", 500));
+        j.addTrade(trade("NQ", POSITIVE_500));
+
         TradingJournalKernel.Trade t = j.removeLastTrade();
+
         assertEquals("NQ", t.symbol());
-        assertEquals(500, t.profitLoss(), 0.001);
+        assertEquals(POSITIVE_500, t.profitLoss(), DELTA);
     }
 
     @Test
     public void testClearResetsJournal() {
         TradingJournal j = createJournal();
-        j.addTrade(trade("NQ", 500));
+        j.addTrade(trade("NQ", POSITIVE_500));
         j.clear();
         assertEquals(0, j.size());
     }
@@ -58,8 +80,8 @@ public class TradingJournal1Test {
         TradingJournal source = createJournal();
         TradingJournal target = createJournal();
 
-        source.addTrade(trade("NQ", 500));
-        source.addTrade(trade("ES", -200));
+        source.addTrade(trade("NQ", POSITIVE_500));
+        source.addTrade(trade("ES", NEGATIVE_200));
 
         target.transferFrom(source);
 
@@ -70,9 +92,9 @@ public class TradingJournal1Test {
     @Test
     public void testMultipleAdds() {
         TradingJournal j = createJournal();
-        j.addTrade(trade("NQ", 500));
-        j.addTrade(trade("ES", -200));
-        j.addTrade(trade("YM", 300));
+        j.addTrade(trade("NQ", POSITIVE_500));
+        j.addTrade(trade("ES", NEGATIVE_200));
+        j.addTrade(trade("YM", POSITIVE_300));
         assertEquals(3, j.size());
     }
 }

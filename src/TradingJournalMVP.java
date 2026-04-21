@@ -1,38 +1,68 @@
 import java.util.ArrayList;
 import java.util.List;
 
-// class
+/**
+ * A simple standalone implementation of a trading journal. This MVP version
+ * stores trades in an ArrayList and provides basic performance metrics.
+ */
 public final class TradingJournalMVP {
 
+    /** Multiplier used to compute percentage values. */
     private static final double PERCENT_MULTIPLIER = 100.0;
 
-    // Representation list of trade records
-    private List<TradeEntry> entries;
+    /** Sample trade values for demonstration. */
+    private static final double SAMPLE_TRADE_ONE = 250.50;
+    /** Sample trade values for demonstration. */
+    private static final double SAMPLE_TRADE_TWO = -100.00;
+    /** Sample trade values for demonstration. */
+    private static final double SAMPLE_TRADE_THREE = 175.75;
+    /** Sample trade values for demonstration. */
+    private static final double SAMPLE_TRADE_FOUR = -50.25;
 
-    // Constructor
+    /** Internal list of recorded trade entries. */
+    private final List<TradeEntry> entries;
+
+    /**
+     * Constructs an empty trading journal.
+     */
     public TradingJournalMVP() {
         this.entries = new ArrayList<>();
     }
 
-    // Adds a new trade to the journal
+    /**
+     * Adds a trade to the journal.
+     *
+     * @param symbol
+     *            the instrument traded
+     * @param profitLoss
+     *            the profit or loss amount
+     */
     public void addTrade(String symbol, double profitLoss) {
         TradeEntry entry = new TradeEntry(symbol, profitLoss);
         this.entries.add(entry);
     }
 
-    // Returns total profit/loss across all trades
+    /**
+     * Returns total profit or loss across all trades.
+     *
+     * @return total profit/loss
+     */
     public double getTotalProfitLoss() {
-        double total = 0;
+        double total = 0.0;
         for (TradeEntry entry : this.entries) {
             total += entry.getProfitLoss();
         }
         return total;
     }
 
-    // Returns win percentage (0–100)
+    /**
+     * Returns win percentage in range [0, 100].
+     *
+     * @return win percentage
+     */
     public double getWinPercentage() {
         if (this.entries.isEmpty()) {
-            return 0;
+            return 0.0;
         }
 
         int wins = 0;
@@ -45,57 +75,86 @@ public final class TradingJournalMVP {
         return (wins * PERCENT_MULTIPLIER) / this.entries.size();
     }
 
-    // Returns number of trades recorded
+    /**
+     * Returns number of trades recorded.
+     *
+     * @return journal size
+     */
     public int size() {
         return this.entries.size();
     }
 
-    //Internal class representing a single trade
-    private static class TradeEntry {
-        private String symbol; // e.g., NQ, ES
-        private double profitLoss; // money made or lost
-        private boolean win; // true if profitable
+    /**
+     * Represents a single trade entry.
+     */
+    private static final class TradeEntry {
 
+        /** Trade symbol (e.g., NQ, ES). */
+        private final String symbol;
+
+        /** Profit or loss amount. */
+        private final double profitLoss;
+
+        /**
+         * Constructs a trade entry.
+         *
+         * @param symbol
+         *            trade symbol
+         * @param profitLoss
+         *            profit or loss amount
+         */
         TradeEntry(String symbol, double profitLoss) {
             this.symbol = symbol;
             this.profitLoss = profitLoss;
-            this.win = profitLoss > 0;
         }
 
+        /**
+         * Returns trade symbol.
+         *
+         * @return symbol
+         */
         public String getSymbol() {
             return this.symbol;
         }
 
+        /**
+         * Returns profit or loss amount.
+         *
+         * @return profit/loss
+         */
         public double getProfitLoss() {
             return this.profitLoss;
         }
 
+        /**
+         * Returns whether the trade was profitable.
+         *
+         * @return true if profit > 0
+         */
         public boolean isWin() {
-            return this.win;
+            return this.profitLoss > 0;
         }
-
     }
 
+    /**
+     * Demonstrates usage of the MVP trading journal.
+     *
+     * @param args
+     *            command-line arguments (unused)
+     */
     public static void main(String[] args) {
-
-        double trade1 = 250.50;
-        double trade2 = -100.00;
-        double trade3 = 175.75;
-        double trade4 = -50.25;
 
         TradingJournalMVP journal = new TradingJournalMVP();
 
-        // Add sample trades
-        journal.addTrade("NQ", trade1);
-        journal.addTrade("ES", trade2);
-        journal.addTrade("NQ", trade3);
-        journal.addTrade("NQ", trade4);
+        journal.addTrade("NQ", SAMPLE_TRADE_ONE);
+        journal.addTrade("ES", SAMPLE_TRADE_TWO);
+        journal.addTrade("NQ", SAMPLE_TRADE_THREE);
+        journal.addTrade("NQ", SAMPLE_TRADE_FOUR);
 
         System.out.println("Number of trades: " + journal.size());
         System.out
                 .println("Total Profit/Loss: $" + journal.getTotalProfitLoss());
         System.out
                 .println("Win Percentage: " + journal.getWinPercentage() + "%");
-
     }
 }

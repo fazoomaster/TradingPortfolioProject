@@ -6,8 +6,8 @@ import components.sequence.Sequence1L;
  */
 public class TradingJournal1 extends TradingJournalSecondary {
 
-    /*
-     * Private representation
+    /**
+     * Private representation.
      */
     private Sequence<Trade> trades;
 

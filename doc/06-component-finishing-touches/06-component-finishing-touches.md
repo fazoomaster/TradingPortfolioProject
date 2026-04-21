@@ -140,7 +140,6 @@ to see them. If you don't like this workflow, you may try following the
 rebase strategies described [here](https://stackoverflow.com/questions/35790561/working-while-waiting-for-pending-pr)
 and [here](https://stackoverflow.com/questions/18021888/continue-working-on-a-git-branch-after-making-a-pull-request).
 
-<!-- TODO: make a new branch from main then delete this comment -->
 
 ## Assignment Tasks
 
@@ -306,18 +305,18 @@ Take some time to fill them out honestly.
 > complete the portfolio project, how much better (or worse) do you think you
 > understand software development and why?
 
-<!-- TODO: discuss -->
+I feel like I understand software development better than before. It made me realize that writing code isn’t just about making something work,it’s about designing it properly, organizing it clearly, and thinking ahead about how it will be used. It also showed me how real projects are built in stages and improved over time, which feels more realistic than just doing small and quick assignments.
 
 > Also, did the portfolio project surface any gaps in your own knowledge of
 > software development. If so, what are those gaps and how did you address them?
 
-<!-- TODO: discuss -->
+I realized I wasn’t fully comfortable with abstraction, representation invariants, and writing strong contracts at first. I also struggled with understanding how different parts of a project connect across branches and versions. I addressed these gaps by reviewing examples from the OSU components, asking questions, debugging carefully, and taking more time to think through the design before coding.
 
 > Finally, as a part of completing the portfolio project, to what extent has
 > your perspective of software development changed, if at all? In other words,
 > is software development something you still enjoy? If not, why not?
 
-<!-- TODO: discuss -->
+I see now that coding is more about planning and design than just writing code. It can be frustrating at times, especially when dealing with structure and errors, but I still enjoy it because it feels rewarding when everything finally works together.
 
 > One of the challenges of completing the portfolio project is picking up a lot
 > of skills on your own. Some of these skills are, of course, software skills.
@@ -325,29 +324,32 @@ Take some time to fill them out honestly.
 > this process. Therefore, the first question is what skills did you pick up
 > through this process?
 
-<!-- TODO: discuss -->
+I picked up several technical and non-technical skills. On the technical side, I improved my understanding of abstraction, layered design, and writing structured, reusable code. I also became more comfortable with testing, debugging, and managing larger projects across multiple files. Beyond coding, I strengthened my problem-solving skills and ability to work through confusion independently. I also gained experience using version control and organizing a project in a more professional way.
+
 
 > The follow-up question is: could you rephrase these skills you picked up
 > as bullet points that you could put on a resume? Try it below.
 
-<!-- TODO: discuss -->
+-Designed and implemented a layered Java component using kernel and enhanced interfaces
+-Applied abstraction, representation invariants, and design-by-contract principles
+-Developed secondary methods using abstract classes and delegation patterns
+-Wrote unit tests to validate component behavior and ensure correctness
+-Managed project workflow using Git branches and pull requests
 
 > Next, how has working on this project affected your career trajectory?
 > In other words, do you now hate the topic you picked? Or, are you even more
 > interested in it? Both outcomes are valuable to your personal development.
 
-<!-- TODO: discuss -->
+Doing this project further showed my interest in the finance and quantiative space. I like the coding aspect of it along with the finance side of it. However I still am unsure if I want to choose one over the other.
 
 > Finally, consider the skills you've picked up and your current career
 > trajectory. What are some things you could do to continue on your
 > career trajectory? Also, who are some mentors you could contact to help
 > you stay on your path?
-
-<!-- TODO: discuss -->
+I can keep building larger and more practical software projects, especially ones related to data analysis and trading systems. I can also improve my understanding of algorithms, data structures, and system design to strengthen my technical foundation. Applying for internships and contributing to real-world projects would help me gain more experience. Mr.Grifski, my father, and a couple other pe0ple I know who are in the quant and coding space can help me.
 
 ### Changelog
 
-<!-- TODO: update CHANGELOG then delete this comment -->
 
 At the end of every assignment, you should update the
 [CHANGELOG.md](../../CHANGELOG.md) file found in the root of the project folder.
