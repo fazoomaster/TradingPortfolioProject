@@ -17,6 +17,39 @@ the following form: YYYY.0M.0D.
 - Improved formatting and directory organization
 
 ## 2026.02.26
+## 2026.04.15
+
+### Added
+- Implemented `TradingJournal1` concrete kernel class
+- Selected `Sequence<Trade>` as internal representation
+- Defined representation invariant and correspondence
+- Implemented kernel methods:
+  - `addTrade`
+  - `removeLastTrade`
+  - `size`
+- Implemented `Standard` methods:
+  - `newInstance`
+  - `clear`
+  - `transferFrom`
+
+# 2026.03.31
+
+### Added
+- Implemented TradingJournalSecondary abstract class
+- Implemented equals and toString using kernel layering
+### Updated
+- TradingJournalKernel to use Trade interface
+
+
+## 2026.03.10
+
+### Added
+- Created TradingJournalKernel interface following OSU kernel discipline
+- Created TradingJournal enhanced interface layered on top of kernel
+- Added client-side method contracts with full JavaDoc and design-by-contract annotations
+
+
+## 2026.02.25
 
 ### Added
 
