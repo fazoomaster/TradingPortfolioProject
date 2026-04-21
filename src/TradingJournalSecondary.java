@@ -3,10 +3,13 @@
  */
 public abstract class TradingJournalSecondary implements TradingJournal {
 
+    /** Multiplier used to convert ratio to percentage. */
+    private static final double PERCENT_MULTIPLIER = 100.0;
+
     @Override
     public final double getTotalProfitLoss() {
 
-        double total = 0;
+        double total = 0.0;
 
         TradingJournal temp = this.newInstance();
 
@@ -46,10 +49,10 @@ public abstract class TradingJournalSecondary implements TradingJournal {
         }
 
         if (totalTrades == 0) {
-            return 0;
+            return 0.0;
         }
 
-        return (wins * 100.0) / totalTrades;
+        return (wins * PERCENT_MULTIPLIER) / totalTrades;
     }
 
     @Override
