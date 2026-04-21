@@ -16,7 +16,6 @@ the following form: YYYY.0M.0D.
 ### Updated
 - Improved formatting and directory organization
 
-## 2026.02.26
 ## 2026.04.15
 
 ### Added
@@ -32,6 +31,7 @@ the following form: YYYY.0M.0D.
   - `clear`
   - `transferFrom`
 
+- Completed Part 2 documentation and justification for selected design
 # 2026.03.31
 
 ### Added
