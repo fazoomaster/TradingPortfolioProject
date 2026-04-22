@@ -1,3 +1,7 @@
+import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
+
 public class TradingJournalSecondaryTest {
 
     private static final double DELTA = 0.001;
@@ -34,56 +38,56 @@ public class TradingJournalSecondaryTest {
 
     @Test
     public void testTotalProfitLossMixedTrades() {
-        TradingJournal j = createJournal();
-        j.addTrade(trade("NQ", POSITIVE_500));
-        j.addTrade(trade("ES", NEGATIVE_200));
-        j.addTrade(trade("YM", POSITIVE_300));
+        TradingJournal j = this.createJournal();
+        j.addTrade(this.trade("NQ", POSITIVE_500));
+        j.addTrade(this.trade("ES", NEGATIVE_200));
+        j.addTrade(this.trade("YM", POSITIVE_300));
 
         assertEquals(600.0, j.getTotalProfitLoss(), DELTA);
     }
 
     @Test
     public void testTotalProfitLossAllLosses() {
-        TradingJournal j = createJournal();
-        j.addTrade(trade("NQ", NEGATIVE_100));
-        j.addTrade(trade("ES", NEGATIVE_200));
+        TradingJournal j = this.createJournal();
+        j.addTrade(this.trade("NQ", NEGATIVE_100));
+        j.addTrade(this.trade("ES", NEGATIVE_200));
 
         assertEquals(-300.0, j.getTotalProfitLoss(), DELTA);
     }
 
     @Test
     public void testWinPercentageAllWins() {
-        TradingJournal j = createJournal();
-        j.addTrade(trade("NQ", POSITIVE_100));
-        j.addTrade(trade("ES", POSITIVE_200));
+        TradingJournal j = this.createJournal();
+        j.addTrade(this.trade("NQ", POSITIVE_100));
+        j.addTrade(this.trade("ES", POSITIVE_200));
 
         assertEquals(100.0, j.getWinPercentage(), DELTA);
     }
 
     @Test
     public void testWinPercentageAllLosses() {
-        TradingJournal j = createJournal();
-        j.addTrade(trade("NQ", NEGATIVE_100));
-        j.addTrade(trade("ES", NEGATIVE_200));
+        TradingJournal j = this.createJournal();
+        j.addTrade(this.trade("NQ", NEGATIVE_100));
+        j.addTrade(this.trade("ES", NEGATIVE_200));
 
         assertEquals(0.0, j.getWinPercentage(), DELTA);
     }
 
     @Test
     public void testWinPercentageMixed() {
-        TradingJournal j = createJournal();
-        j.addTrade(trade("NQ", POSITIVE_100));
-        j.addTrade(trade("ES", NEGATIVE_100));
-        j.addTrade(trade("YM", POSITIVE_200));
+        TradingJournal j = this.createJournal();
+        j.addTrade(this.trade("NQ", POSITIVE_100));
+        j.addTrade(this.trade("ES", NEGATIVE_100));
+        j.addTrade(this.trade("YM", POSITIVE_200));
 
         assertEquals(66.666, j.getWinPercentage(), 0.01);
     }
 
     @Test
     public void testSecondaryMethodsDoNotModifyJournal() {
-        TradingJournal j = createJournal();
-        j.addTrade(trade("NQ", POSITIVE_100));
-        j.addTrade(trade("ES", NEGATIVE_100));
+        TradingJournal j = this.createJournal();
+        j.addTrade(this.trade("NQ", POSITIVE_100));
+        j.addTrade(this.trade("ES", NEGATIVE_100));
 
         int originalSize = j.size();
 

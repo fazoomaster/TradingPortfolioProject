@@ -1,3 +1,7 @@
+import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
+
 public class TradingJournal1Test {
 
     private static final double DELTA = 0.001;
