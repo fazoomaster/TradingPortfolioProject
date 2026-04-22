@@ -10,7 +10,6 @@ public abstract class TradingJournalSecondary implements TradingJournal {
     public final double getTotalProfitLoss() {
 
         double total = 0.0;
-
         TradingJournal temp = this.newInstance();
 
         while (this.size() > 0) {
@@ -31,7 +30,6 @@ public abstract class TradingJournalSecondary implements TradingJournal {
 
         int wins = 0;
         int totalTrades = this.size();
-
         TradingJournal temp = this.newInstance();
 
         while (this.size() > 0) {
@@ -53,40 +51,5 @@ public abstract class TradingJournalSecondary implements TradingJournal {
         }
 
         return (wins * PERCENT_MULTIPLIER) / totalTrades;
-    }
-
-    @Override
-    public final String toString() {
-
-        StringBuilder result = new StringBuilder();
-        result.append("[");
-
-        TradingJournal temp = this.newInstance();
-
-        boolean first = true;
-
-        while (this.size() > 0) {
-            TradingJournalKernel.Trade trade = this.removeLastTrade();
-
-            if (!first) {
-                result.append(", ");
-            }
-
-            result.append(trade.symbol());
-            result.append(": ");
-            result.append(trade.profitLoss());
-
-            first = false;
-
-            temp.addTrade(trade);
-        }
-
-        while (temp.size() > 0) {
-            this.addTrade(temp.removeLastTrade());
-        }
-
-        result.append("]");
-
-        return result.toString();
     }
 }

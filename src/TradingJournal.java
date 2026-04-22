@@ -26,4 +26,3 @@ public interface TradingJournal extends TradingJournalKernel {
     double getWinPercentage();
 
 }
-

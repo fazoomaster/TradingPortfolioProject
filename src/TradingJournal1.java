@@ -7,6 +7,41 @@ import components.sequence.Sequence1L;
 public class TradingJournal1 extends TradingJournalSecondary {
 
     /**
+     * Concrete implementation of Trade.
+     */
+    public static final class Trade1 implements TradingJournalKernel.Trade {
+
+        /** Trading symbol. */
+        private final String symbol;
+
+        /** Profit or loss value. */
+        private final double profitLoss;
+
+        /**
+         * Constructs a trade.
+         *
+         * @param symbol
+         *            trading symbol
+         * @param profitLoss
+         *            profit or loss value
+         */
+        public Trade1(String symbol, double profitLoss) {
+            this.symbol = symbol;
+            this.profitLoss = profitLoss;
+        }
+
+        @Override
+        public String symbol() {
+            return this.symbol;
+        }
+
+        @Override
+        public double profitLoss() {
+            return this.profitLoss;
+        }
+    }
+
+    /**
      * Private representation.
      */
     private Sequence<Trade> trades;

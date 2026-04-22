@@ -4,22 +4,14 @@
  */
 public final class TraderPerformanceTracker {
 
-    /**
-     * Underlying trading journal component.
-     */
+    /** Underlying trading journal component. */
     private final TradingJournal journal;
 
-    /**
-     * Example trade profit/loss values used in main.
-     */
+    /** Example trade profit/loss values used in main. */
     private static final double SAMPLE_TRADE_ONE = 400.0;
-    /**
-     * Example trade profit/loss values used in main.
-     */
+    /** Example trade profit/loss values used in main. */
     private static final double SAMPLE_TRADE_TWO = -150.0;
-    /**
-     * Example trade profit/loss values used in main.
-     */
+    /** Example trade profit/loss values used in main. */
     private static final double SAMPLE_TRADE_THREE = 250.0;
 
     /**
@@ -38,7 +30,11 @@ public final class TraderPerformanceTracker {
      *            the profit or loss value
      */
     public void recordTrade(String symbol, double pnl) {
-        this.journal.addTrade(new TradingJournal1.Trade1(symbol, pnl));
+
+        TradingJournalKernel.Trade trade = new TradingJournal1.Trade1(symbol,
+                pnl);
+
+        this.journal.addTrade(trade);
     }
 
     /**
