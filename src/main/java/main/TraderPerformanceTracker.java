@@ -1,5 +1,7 @@
+package main;
+
 /**
- * Demonstrates how the TradingJournal component can be embedded inside a
+ * Demonstrates how the TradingJournal can be embedded inside a
  * higher-level performance tracking system.
  */
 public final class TraderPerformanceTracker {
@@ -7,34 +9,30 @@ public final class TraderPerformanceTracker {
     /** Underlying trading journal component. */
     private final TradingJournal journal;
 
-    /** Example trade profit/loss values used in main. */
+    /** First sample trade value. */
     private static final double SAMPLE_TRADE_ONE = 400.0;
-    /** Example trade profit/loss values used in main. */
+
+    /** Second sample trade value. */
     private static final double SAMPLE_TRADE_TWO = -150.0;
-    /** Example trade profit/loss values used in main. */
+
+    /** Third sample trade value. */
     private static final double SAMPLE_TRADE_THREE = 250.0;
 
     /**
      * Constructs a new performance tracker with an empty journal.
      */
     public TraderPerformanceTracker() {
-        this.journal = new TradingJournal1();
+        this.journal = new TradingJournalImpl();
     }
 
     /**
      * Records a trade into the journal.
      *
-     * @param symbol
-     *            the instrument traded
-     * @param pnl
-     *            the profit or loss value
+     * @param symbol instrument traded
+     * @param pnl    profit or loss value
      */
     public void recordTrade(String symbol, double pnl) {
-
-        TradingJournalKernel.Trade trade = new TradingJournal1.Trade1(symbol,
-                pnl);
-
-        this.journal.addTrade(trade);
+        this.journal.addTrade(new Trade(symbol, pnl));
     }
 
     /**
@@ -49,7 +47,7 @@ public final class TraderPerformanceTracker {
     /**
      * Returns win rate percentage.
      *
-     * @return win percentage in range [0, 100]
+     * @return win rate as a percentage (0 to 100)
      */
     public double getWinRate() {
         return this.journal.getWinPercentage();
@@ -58,8 +56,7 @@ public final class TraderPerformanceTracker {
     /**
      * Demonstrates usage of the performance tracker.
      *
-     * @param args
-     *            command-line arguments (unused)
+     * @param args command-line arguments (unused)
      */
     public static void main(String[] args) {
 
